@@ -2,7 +2,6 @@ steps:
 # pipeline
   - name: "Send an annotation"
     command: >
-      cat scripts/buildkite/annotations.json | buildkite-agent step update "notify.github_check.output.annotations"
+     cat scripts/buildkite/annotations.json | buildkite-agent step update "notify.github_check.output.annotations" 
     notify:
       - github_check
-
