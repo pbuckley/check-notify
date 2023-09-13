@@ -1,7 +1,23 @@
 steps:
-# pipeline
+  - command: ls
+    key: linter
+    label: "Simple Check"
+    notify:
+      - github_check:
+          name: SimpleCheck
+
+  - commands:
+    - echo "not Failing"
+    - buildkite-agent step update "notify.github_check.output.title" "Check with Title"
+    - cat scripts/buildkite/annotations.json | buildkite-agent step update "notify.github_check.output.annotations"
+    key: linter2
+    label: "Check with Title"
+    notify:
+      - github_check:
+          name: Failing
+
   - name: "Send an annotation"
     command: >
-      cat scripts/buildkite/annotations.json | buildkite-agent step update "notify.github_check.output.annotations"
+     cat scripts/buildkite/annotations.json | buildkite-agent step update "notify.github_check.output.annotations" 
     notify:
       - github_check
