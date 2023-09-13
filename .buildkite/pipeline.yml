@@ -5,3 +5,4 @@ steps:
       cat scripts/buildkite/annotations.json | buildkite-agent step update "notify.github_check.output.annotations"
     notify:
       - github_check
+
